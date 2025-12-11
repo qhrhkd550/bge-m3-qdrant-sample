@@ -1,29 +1,29 @@
-# BGE-M3 Qdrant sample. Hybrid search & reranking 
+# 업태·종목 기반 자금종류 추천 시스템 (BGE-M3 & Qdrant)
 
 ![image](https://github.com/user-attachments/assets/f59dc6ae-4189-4fd7-8351-6d5c64f6cf92)
 
-This repository contains a [Jupyter notebook](sample.ipynb) that demonstrates how to build an advanced search system using BGE-M3 and Qdrant.
+이 저장소는 BGE-M3와 Qdrant를 사용하여 **업태와 종목을 입력하면 적합한 자금종류를 추천**하는 시스템을 구현한 [Jupyter 노트북](sample.ipynb)을 포함합니다.
 
-The key feature of this sample is the use of an all-in-one embedding model (BGE-M3) that generates three types of vectors in a single pass:
-- **Dense vectors**: For semantic similarity (1024 dimensions)
-- **Sparse vectors**: For lexical/keyword matching
-- **ColBERT token vectors**: For fine-grained token-level matching
+핵심 기능은 BGE-M3 올인원 임베딩 모델을 사용하여 한 번에 3가지 타입의 벡터를 생성하는 것입니다:
+- **Dense vectors**: 의미론적 유사도 측정 (1024 차원)
+- **Sparse vectors**: 키워드 매칭용 희소 벡터
+- **ColBERT token vectors**: 토큰 레벨의 세밀한 매칭
 
-This multi-vector approach provides superior search quality by combining the strengths of different embedding types within a single model.
+이 멀티벡터 접근법은 단일 모델 내에서 여러 임베딩 타입의 장점을 결합하여 우수한 검색 품질을 제공합니다.
 
-## Requirements
+## 요구사항
 
 - Python 3.9+
-- Docker (for running Qdrant)
-- Jupyter Notebook
+- Jupyter Notebook 또는 Google Colab
+- (Docker 불필요 - 인메모리 모드 사용)
 
-## How It Works
+## 동작 방식
 
-The system operates in the following steps:
+시스템은 다음 단계로 작동합니다:
 
-1. **Data Loading**: Products are loaded from a CSV file
-2. **Text Formatting**: Product information is formatted for embedding
-3. **Embedding Generation**: BGE-M3 generates all three embedding types in one pass
-4. **Vector Database Setup**: Qdrant collection is configured for hybrid search
-5. **Data Indexing**: Product data and embeddings are stored in Qdrant
-6. **Search**: Queries go through the same embedding process and retrieve results
+1. **데이터 로딩**: 업태, 종목, 자금종류 데이터를 CSV 파일에서 로드
+2. **텍스트 포맷팅**: 업태와 종목 정보를 임베딩용 텍스트로 포맷
+3. **임베딩 생성**: BGE-M3가 한 번에 3가지 임베딩 타입 모두 생성
+4. **벡터 DB 설정**: 하이브리드 검색을 위한 Qdrant 컬렉션 구성
+5. **데이터 인덱싱**: 업태·종목 데이터와 임베딩을 Qdrant에 저장
+6. **검색**: 사용자가 입력한 업태·종목에 대해 유사한 자금종류 추천
